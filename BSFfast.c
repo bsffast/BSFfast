@@ -18,56 +18,110 @@
 #define sigBSFeff_alpha0 0.1
 #define BSFfast_Eps 1e-9  //to be used in IsRoughly
 
+    // scalars
 
-double **topPlat_data = NULL;
-double **topCut_data = NULL;
-double **botPlat_data = NULL;
-double **botCut_data = NULL;
-double **noTCut_data = NULL;
-double **noTPlat_data = NULL;
+double **topPlatS_data = NULL;
+double **topCutS_data = NULL;
+double **botPlatS_data = NULL;
+double **botCutS_data = NULL;
+double **noTCutS_data = NULL;
+double **noTPlatS_data = NULL;
 
-double *xQED_data = NULL;
-double *xNoTQED_data = NULL;
-double *xNoTQCD_data = NULL;
+double *xQEDS_data = NULL;
+double *xNoTQEDS_data = NULL;
+double *xNoTQCDS_data = NULL;
 
-double *topPlat_m = NULL;
-double *botPlat_m = NULL;
-double *noTPlat_m = NULL;
-double *topCut_m = NULL;
-double *botCut_m = NULL;
-double *noTCut_m = NULL;
+double *topPlatS_m = NULL;
+double *botPlatS_m = NULL;
+double *noTPlatS_m = NULL;
+double *topCutS_m = NULL;
+double *botCutS_m = NULL;
+double *noTCutS_m = NULL;
 
-double *topPlat_x = NULL;
-double *botPlat_x = NULL;
-double *noTPlat_x = NULL;
-double *topCut_x = NULL;
-double *botCut_x = NULL;
-double *noTCut_x = NULL;
+double *topPlatS_x = NULL;
+double *botPlatS_x = NULL;
+double *noTPlatS_x = NULL;
+double *topCutS_x = NULL;
+double *botCutS_x = NULL;
+double *noTCutS_x = NULL;
 
-double xQED_m;
-double xNoTQED_m;
-double xNoTQCD_m; 
+double xQEDS_m;
+double xNoTQEDS_m;
+double xNoTQCDS_m; 
 
-double *xQED_x = NULL;
-double *xNoTQED_x = NULL;
-double *xNoTQCD_x = NULL;
+double *xQEDS_x = NULL;
+double *xNoTQEDS_x = NULL;
+double *xNoTQCDS_x = NULL;
 
-int topPlat_x_size = 0;
-int topPlat_m_size = 0;
-int topCut_x_size = 0;
-int topCut_m_size = 0;
-int botPlat_x_size = 0;
-int botPlat_m_size = 0;
-int botCut_x_size = 0;
-int botCut_m_size = 0;
-int noTPlat_x_size = 0;
-int noTPlat_m_size = 0;
-int noTCut_x_size = 0;
-int noTCut_m_size = 0;
+int topPlatS_x_size = 0;
+int topPlatS_m_size = 0;
+int topCutS_x_size = 0;
+int topCutS_m_size = 0;
+int botPlatS_x_size = 0;
+int botPlatS_m_size = 0;
+int botCutS_x_size = 0;
+int botCutS_m_size = 0;
+int noTPlatS_x_size = 0;
+int noTPlatS_m_size = 0;
+int noTCutS_x_size = 0;
+int noTCutS_m_size = 0;
 
-int xQED_x_size = 0;
-int xNoTQED_x_size = 0;
-int xNoTQCD_x_size = 0;
+int xQEDS_x_size = 0;
+int xNoTQEDS_x_size = 0;
+int xNoTQCDS_x_size = 0;
+
+    // fermions
+
+double **topPlatF_data = NULL;
+double **topCutF_data = NULL;
+double **botPlatF_data = NULL;
+double **botCutF_data = NULL;
+double **noTCutF_data = NULL;
+double **noTPlatF_data = NULL;
+
+double *xQEDF_data = NULL;
+double *xNoTQEDF_data = NULL;
+double *xNoTQCDF_data = NULL;
+
+double *topPlatF_m = NULL;
+double *botPlatF_m = NULL;
+double *noTPlatF_m = NULL;
+double *topCutF_m = NULL;
+double *botCutF_m = NULL;
+double *noTCutF_m = NULL;
+
+double *topPlatF_x = NULL;
+double *botPlatF_x = NULL;
+double *noTPlatF_x = NULL;
+double *topCutF_x = NULL;
+double *botCutF_x = NULL;
+double *noTCutF_x = NULL;
+
+double xQEDF_m;
+double xNoTQEDF_m;
+double xNoTQCDF_m; 
+
+double *xQEDF_x = NULL;
+double *xNoTQEDF_x = NULL;
+double *xNoTQCDF_x = NULL;
+
+int topPlatF_x_size = 0;
+int topPlatF_m_size = 0;
+int topCutF_x_size = 0;
+int topCutF_m_size = 0;
+int botPlatF_x_size = 0;
+int botPlatF_m_size = 0;
+int botCutF_x_size = 0;
+int botCutF_m_size = 0;
+int noTPlatF_x_size = 0;
+int noTPlatF_m_size = 0;
+int noTCutF_x_size = 0;
+int noTCutF_m_size = 0;
+
+int xQEDF_x_size = 0;
+int xNoTQEDF_x_size = 0;
+int xNoTQCDF_x_size = 0;
+
 
 //
 bool IsRoughly(double a, double b) {
@@ -326,66 +380,68 @@ double BSFfast_bilinear_interpolate(double *m_unique, double *x_unique, double *
 }
 
 // define basic functions to evaluate on data
+    //scalars
+
 	//TOP Pleteau
 double BSFfast_sigveff_QCD_SU_plat(double m, double x) {
     double logm = log(m), logx=log(x);
 	//not handling extrapolation for QCD models.
-	if (logm>topPlat_m[topPlat_m_size-1] || logm<topPlat_m[0] || logx>topPlat_x[topPlat_x_size-1] || logx<topPlat_x[0] ){
+	if (logm>topPlatS_m[topPlatS_m_size-1] || logm<topPlatS_m[0] || logx>topPlatS_x[topPlatS_x_size-1] || logx<topPlatS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-	double out = exp( BSFfast_bilinear_interpolate(topPlat_m, topPlat_x,topPlat_data,log(m),log(x), topPlat_m_size, topPlat_x_size) );
+	double out = exp( BSFfast_bilinear_interpolate(topPlatS_m, topPlatS_x,topPlatS_data,log(m),log(x), topPlatS_m_size, topPlatS_x_size) );
     return out;
     }
 	//TOP Cutoff
 double BSFfast_sigveff_QCD_SU_cut(double m, double x) {
     double logm = log(m), logx=log(x);
-	if (logm>topCut_m[topCut_m_size-1] || logm<topCut_m[0] || logx>topCut_x[topCut_x_size-1] || logx<topCut_x[0] ){
+	if (logm>topCutS_m[topCutS_m_size-1] || logm<topCutS_m[0] || logx>topCutS_x[topCutS_x_size-1] || logx<topCutS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-	double out = (exp( BSFfast_bilinear_interpolate(topCut_m, topCut_x,topCut_data,log(m),log(x), topCut_m_size, topCut_x_size) ));
+	double out = (exp( BSFfast_bilinear_interpolate(topCutS_m, topCutS_x,topCutS_data,log(m),log(x), topCutS_m_size, topCutS_x_size) ));
     return out;
     }
 
 	//BOTTOM Plateau
 double BSFfast_sigveff_QCD_SD_plat(double m, double x) {
     double logm = log(m), logx=log(x);
-	if (logm>botPlat_m[botPlat_m_size-1] || logm<botPlat_m[0] || logx>botPlat_x[botPlat_x_size-1] || logx<botPlat_x[0] ){
+	if (logm>botPlatS_m[botPlatS_m_size-1] || logm<botPlatS_m[0] || logx>botPlatS_x[botPlatS_x_size-1] || logx<botPlatS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-    double out = (exp( BSFfast_bilinear_interpolate(botPlat_m, botPlat_x,botPlat_data,log(m),log(x), botPlat_m_size, botPlat_x_size) ));
+    double out = (exp( BSFfast_bilinear_interpolate(botPlatS_m, botPlatS_x,botPlatS_data,log(m),log(x), botPlatS_m_size, botPlatS_x_size) ));
     return out;
     }
-	//BOTTOM Plateau
+	//BOTTOM Cutoff
 double BSFfast_sigveff_QCD_SD_cut(double m, double x) {
     double logm = log(m), logx=log(x);
-	if (logm>botCut_m[botCut_m_size-1] || logm<botCut_m[0] || logx>botCut_x[botCut_x_size-1] || logx<botCut_x[0] ){
+	if (logm>botCutS_m[botCutS_m_size-1] || logm<botCutS_m[0] || logx>botCutS_x[botCutS_x_size-1] || logx<botCutS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-	double out = (exp( BSFfast_bilinear_interpolate(botCut_m, botCut_x,botCut_data,log(m),log(x), botCut_m_size, botCut_x_size) ));
+	double out = (exp( BSFfast_bilinear_interpolate(botCutS_m, botCutS_x,botCutS_data,log(m),log(x), botCutS_m_size, botCutS_x_size) ));
     return out;
     }
 
 	//no-Trans Plateau
 double BSFfast_sigveff_QCD_S_plat(double m, double x) {
     double logm = log(m), logx=log(x);
-	if (logm>noTPlat_m[noTPlat_m_size-1] || logm<noTPlat_m[0] || logx>noTPlat_x[noTPlat_x_size-1] || logx<noTPlat_x[0] ){
+	if (logm>noTPlatS_m[noTPlatS_m_size-1] || logm<noTPlatS_m[0] || logx>noTPlatS_x[noTPlatS_x_size-1] || logx<noTPlatS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-	double out = (exp( BSFfast_bilinear_interpolate(noTPlat_m, noTPlat_x, noTPlat_data,log(m),log(x), noTPlat_m_size, noTPlat_x_size) ));
+	double out = (exp( BSFfast_bilinear_interpolate(noTPlatS_m, noTPlatS_x, noTPlatS_data,log(m),log(x), noTPlatS_m_size, noTPlatS_x_size) ));
     return out;}
-	//no-Trans Plateau
+	//no-Trans Cutoff
 double BSFfast_sigveff_QCD_S_cut(double m, double x) {
 	double logm = log(m), logx=log(x);
-	if (logm>noTCut_m[noTCut_m_size-1] || logm<noTCut_m[0] || logx>noTCut_x[noTCut_x_size-1] || logx<noTCut_x[0] ){
+	if (logm>noTCutS_m[noTCutS_m_size-1] || logm<noTCutS_m[0] || logx>noTCutS_x[noTCutS_x_size-1] || logx<noTCutS_x[0] ){
 		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
 		return -1.;
 	}
-	double out = (exp( BSFfast_bilinear_interpolate(noTCut_m, noTCut_x,noTCut_data,log(m),log(x), noTCut_m_size, noTCut_x_size) ));
+	double out = (exp( BSFfast_bilinear_interpolate(noTCutS_m, noTCutS_x,noTCutS_data,log(m),log(x), noTCutS_m_size, noTCutS_x_size) ));
     return out;
 }
 
@@ -403,9 +459,9 @@ double BSFfast_sigveff_dQED_S_const(double alpha, double m, double x) {
 		return -1.;
 	}*/
 	
-    double prefactor = xQED_m;
+    double prefactor = xQEDS_m;
     prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
-    prefactor = prefactor * exp( BSFfast_linear_interpolate( xQED_x, xQED_data, logx , xQED_x_size)  );
+    prefactor = prefactor * exp( BSFfast_linear_interpolate( xQEDS_x, xQEDS_data, logx , xQEDS_x_size)  );
     return prefactor;
 }
 	//xQED-noTrans-const
@@ -417,13 +473,13 @@ double BSFfast_sigveff_dQED_SnT_const(double alpha, double m, double x) {
 		return -1.;
 	}*/
 	 
-    double prefactor = xNoTQED_m;
+    double prefactor = xNoTQEDS_m;
     prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
-    prefactor = prefactor * exp( BSFfast_linear_interpolate(xNoTQED_x, xNoTQED_data, logx , xNoTQED_x_size) 	);
+    prefactor = prefactor * exp( BSFfast_linear_interpolate(xNoTQEDS_x, xNoTQEDS_data, logx , xNoTQEDS_x_size) 	);
     return prefactor;
 }
 	// xQCD-NoTrans-const
-double BSFfast_sigveff_dQCD_const(double alpha, double m, double x) {
+double BSFfast_sigveff_dQCD_S_const(double alpha, double m, double x) {
 	double r = alpha / sigBSFeff_alpha0; 
 	double logx = log(x) + 2 * log(r);
 	/*if ( logx>xNoTQCD_x[ xNoTQCD_x_size - 1 ] || logx<xNoTQCD_x[0] ){
@@ -431,33 +487,169 @@ double BSFfast_sigveff_dQCD_const(double alpha, double m, double x) {
 		return -1.;
 	}*/
 		
-    double prefactor = xNoTQCD_m;
+    double prefactor = xNoTQCDS_m;
     prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
-    prefactor = prefactor * exp(BSFfast_linear_interpolate(xNoTQCD_x, xNoTQCD_data, logx , xNoTQCD_x_size) );
+    prefactor = prefactor * exp(BSFfast_linear_interpolate(xNoTQCDS_x, xNoTQCDS_data, logx , xNoTQCDS_x_size) );
     return prefactor;
 }
+
+
+    //fermions
+
+	//TOP Pleteau
+double BSFfast_sigveff_QCD_FU_plat(double m, double x) {
+    double logm = log(m), logx=log(x);
+	//not handling extrapolation for QCD models.
+	if (logm>topPlatF_m[topPlatF_m_size-1] || logm<topPlatF_m[0] || logx>topPlatF_x[topPlatF_x_size-1] || logx<topPlatF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+	double out = exp( BSFfast_bilinear_interpolate(topPlatF_m, topPlatF_x,topPlatF_data,log(m),log(x), topPlatF_m_size, topPlatF_x_size) );
+    return out;
+    }
+	//TOP Cutoff
+double BSFfast_sigveff_QCD_FU_cut(double m, double x) {
+    double logm = log(m), logx=log(x);
+	if (logm>topCutF_m[topCutF_m_size-1] || logm<topCutF_m[0] || logx>topCutF_x[topCutF_x_size-1] || logx<topCutF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+	double out = (exp( BSFfast_bilinear_interpolate(topCutF_m, topCutF_x,topCutF_data,log(m),log(x), topCutF_m_size, topCutF_x_size) ));
+    return out;
+    }
+
+	//BOTTOM Plateau
+double BSFfast_sigveff_QCD_FD_plat(double m, double x) {
+    double logm = log(m), logx=log(x);
+	if (logm>botPlatF_m[botPlatF_m_size-1] || logm<botPlatF_m[0] || logx>botPlatF_x[botPlatF_x_size-1] || logx<botPlatF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+    double out = (exp( BSFfast_bilinear_interpolate(botPlatF_m, botPlatF_x,botPlatF_data,log(m),log(x), botPlatF_m_size, botPlatF_x_size) ));
+    return out;
+    }
+	//BOTTOM Cutoff
+double BSFfast_sigveff_QCD_FD_cut(double m, double x) {
+    double logm = log(m), logx=log(x);
+	if (logm>botCutF_m[botCutF_m_size-1] || logm<botCutF_m[0] || logx>botCutF_x[botCutF_x_size-1] || logx<botCutF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+	double out = (exp( BSFfast_bilinear_interpolate(botCutF_m, botCutF_x,botCutF_data,log(m),log(x), botCutF_m_size, botCutF_x_size) ));
+    return out;
+    }
+
+	//no-Trans Plateau
+double BSFfast_sigveff_QCD_F_plat(double m, double x) {
+    double logm = log(m), logx=log(x);
+	if (logm>noTPlatF_m[noTPlatF_m_size-1] || logm<noTPlatF_m[0] || logx>noTPlatF_x[noTPlatF_x_size-1] || logx<noTPlatF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+	double out = (exp( BSFfast_bilinear_interpolate(noTPlatF_m, noTPlatF_x, noTPlatF_data,log(m),log(x), noTPlatF_m_size, noTPlatF_x_size) ));
+    return out;}
+	//no-Trans Cutoff
+double BSFfast_sigveff_QCD_F_cut(double m, double x) {
+	double logm = log(m), logx=log(x);
+	if (logm>noTCutF_m[noTCutF_m_size-1] || logm<noTCutF_m[0] || logx>noTCutF_x[noTCutF_x_size-1] || logx<noTCutF_x[0] ){
+		printf("OOB: logm=%.3f, logx=%.5f\n", logm, logx); 
+		return -1.;
+	}
+	double out = (exp( BSFfast_bilinear_interpolate(noTCutF_m, noTCutF_x,noTCutF_data,log(m),log(x), noTCutF_m_size, noTCutF_x_size) ));
+    return out;
+}
+
+	//SM-QED-const
+double BSFfast_sigveff_QED_F_const(double m, double x) {
+	return BSFfast_sigveff_dQED_F_const(1/128.9, m, x);	
+}
+	//xQED-const
+double BSFfast_sigveff_dQED_F_const(double alpha, double m, double x) {
+	double r = alpha / sigBSFeff_alpha0; 
+	double logx = log(x) + 2 * log(r);
+	//DO extrapolate for constant coupling models.
+    /*if ( logx > xQED_x[ xQED_x_size - 1 ] || logx < xQED_x[0] ){
+		printf("OOB: %.5f > logx=%.5f > %.5f\n", xQED_x[xQED_x_size-1], logx, xQED_x[1]); 
+		return -1.;
+	}*/
+	
+    double prefactor = xQEDF_m;
+    prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
+    prefactor = prefactor * exp( BSFfast_linear_interpolate( xQEDF_x, xQEDF_data, logx , xQEDF_x_size)  );
+    return prefactor;
+}
+	//xQED-noTrans-const
+double BSFfast_sigveff_dQED_FnT_const(double alpha, double m, double x) {
+	double r = alpha / sigBSFeff_alpha0; 
+	double logx = log(x) + 2 * log(r);
+    /*if ( logx>xNoTQED_x[ xNoTQED_x_size - 1 ] || logx<xNoTQED_x[0] ){
+		printf("OOB: %.5f > logx=%.5f > %.5f\n", xNoTQED_x[xNoTQED_x_size-1], logx, xNoTQED_x[1]); 
+		return -1.;
+	}*/
+	 
+    double prefactor = xNoTQEDF_m;
+    prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
+    prefactor = prefactor * exp( BSFfast_linear_interpolate(xNoTQEDF_x, xNoTQEDF_data, logx , xNoTQEDF_x_size) 	);
+    return prefactor;
+}
+	// xQCD-NoTrans-const
+double BSFfast_sigveff_dQCD_F_const(double alpha, double m, double x) {
+	double r = alpha / sigBSFeff_alpha0; 
+	double logx = log(x) + 2 * log(r);
+	/*if ( logx>xNoTQCD_x[ xNoTQCD_x_size - 1 ] || logx<xNoTQCD_x[0] ){
+		printf("OOB: %.5f > logx=%.5f > %.5f\n", xNoTQCD_x[xNoTQCD_x_size-1], logx, xNoTQCD_x[1]); 
+		return -1.;
+	}*/
+		
+    double prefactor = xNoTQCDF_m;
+    prefactor = prefactor * prefactor * r * r / m / m; //  m0^2/m^2 * r^2
+    prefactor = prefactor * exp(BSFfast_linear_interpolate(xNoTQCDF_x, xNoTQCDF_data, logx , xNoTQCDF_x_size) );
+    return prefactor;
+}
+
+
 
 
 __attribute__((constructor))
 void init_library(void) {
 	// import all 9 data files into the global variables
 		//function calls are still lacking the data-length information to be passed on !
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asPlateau1.RD.csv", &topPlat_m, &topPlat_x, &topPlat_data, &topPlat_m_size, &topPlat_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asCutoff1.RD.csv", &topCut_m, &topCut_x, &topCut_data, &topCut_m_size, &topCut_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asPlateau1.RD.csv", &botPlat_m, &botPlat_x, &botPlat_data, &botPlat_m_size, &botPlat_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asCutoff1.RD.csv", &botCut_m, &botCut_x, &botCut_data, &botCut_m_size, &botCut_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff-NoTrans_sbottom_asPlateau1.RD.csv", &noTPlat_m, &noTPlat_x, &noTPlat_data, &noTPlat_m_size, &noTPlat_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff-NoTrans_sbottom_asCutoff1.RD.csv", &noTCut_m, &noTCut_x, &noTCut_data, &noTCut_m_size, &noTCut_x_size);
 
-	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QED_asConst0.1_m1GeV.csv", &xQED_m, &xQED_x, &xQED_data, &xQED_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QEDnoTrans_asConst0.1_m1GeV.csv", &xNoTQED_m, &xNoTQED_x, &xNoTQED_data, &xNoTQED_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QCDnoTrans_asConst0.1_m1GeV.csv", &xNoTQED_m, &xNoTQED_x, &xNoTQED_data, &xNoTQCD_x_size);
+    	//scalars
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asPlateau1.RD.csv", &topPlatS_m, &topPlatS_x, &topPlatS_data, &topPlatS_m_size, &topPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asCutoff1.RD.csv", &topCutS_m, &topCutS_x, &topCutS_data, &topCutS_m_size, &topCutS_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asPlateau1.RD.csv", &botPlatS_m, &botPlatS_x, &botPlatS_data, &botPlatS_m_size, &botPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asCutoff1.RD.csv", &botCutS_m, &botCutS_x, &botCutS_data, &botCutS_m_size, &botCutS_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_NoTrans_asPlateau1.RD.csv", &noTPlatS_m, &noTPlatS_x, &noTPlatS_data, &noTPlatS_m_size, &noTPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_NoTrans_asCutoff1.RD.csv", &noTCutS_m, &noTCutS_x, &noTCutS_data, &noTCutS_m_size, &noTCutS_x_size);
+
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QED_asConst0.1_m1GeV.csv", &xQEDS_m, &xQEDS_x, &xQEDS_data, &xQEDS_x_size);
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QEDnoTrans_asConst0.1_m1GeV.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQEDS_x_size);
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QCDnoTrans_asConst0.1_m1GeV.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQCDS_x_size);
 	
-	printf("BSFfast > imported table sizes:\n          topP= %i x %i,topC= %i x %i, botP= %i x %i, botC= %i x %i, notP= %i x %i, notC= %i x %i |\n          QED= %i , QEDnot= %i , QCD= %i\n\n", 
-					topPlat_m_size, topPlat_x_size, topCut_m_size, topCut_x_size, 
-					botPlat_m_size, botPlat_x_size, botCut_m_size, botCut_x_size, 
-					noTPlat_m_size, noTPlat_x_size, noTCut_m_size, noTCut_x_size, 
-					xQED_x_size, xNoTQED_x_size, xNoTQCD_x_size );
+	    //fermions
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asPlateau1.RD.fermion.csv", &topPlatF_m, &topPlatF_x, &topPlatF_data, &topPlatF_m_size, &topPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_stop_asCutoff1.RD.fermion.csv", &topCutF_m, &topCutF_x, &topCutF_data, &topCutF_m_size, &topCutF_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asPlateau1.RD.fermion.csv", &botPlatF_m, &botPlatF_x, &botPlatF_data, &botPlatF_m_size, &botPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_sbottom_asCutoff1.RD.fermion.csv", &botCutF_m, &botCutF_x, &botCutF_data, &botCutF_m_size, &botCutF_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_NoTrans_asPlateau1.RD.fermion.csv", &noTPlatF_m, &noTPlatF_x, &noTPlatF_data, &noTPlatF_m_size, &noTPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_DataCSV/sigBSFeff_NoTrans_asCutoff1.RD.fermion.csv", &noTCutF_m, &noTCutF_x, &noTCutF_data, &noTCutF_m_size, &noTCutF_x_size);
+
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QED_asConst0.1_m1GeV.fermion.csv", &xQEDF_m, &xQEDF_x, &xQEDF_data, &xQEDF_x_size);
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QEDnoTrans_asConst0.1_m1GeV.fermion.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQEDF_x_size);
+	BSFfast_importData_1d("BSFfast_DataCSV/xgridSigBSFeff_QCDnoTrans_asConst0.1_m1GeV.fermion.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQCDF_x_size);
+	
+	
+	printf("BSFfast > imported table sizes (scalars):\n          topP= %i x %i,topC= %i x %i, botP= %i x %i, botC= %i x %i, notP= %i x %i, notC= %i x %i |\n          QED= %i , QEDnot= %i , QCD= %i\n", 
+					topPlatS_m_size, topPlatS_x_size, topCutS_m_size, topCutS_x_size, 
+					botPlatS_m_size, botPlatS_x_size, botCutS_m_size, botCutS_x_size, 
+					noTPlatS_m_size, noTPlatS_x_size, noTCutS_m_size, noTCutS_x_size, 
+					xQEDS_x_size, xNoTQEDS_x_size, xNoTQCDS_x_size );
+	printf("                               (fermion):\n          topP= %i x %i,topC= %i x %i, botP= %i x %i, botC= %i x %i, notP= %i x %i, notC= %i x %i |\n          QED= %i , QEDnot= %i , QCD= %i\n\n", 
+					topPlatF_m_size, topPlatF_x_size, topCutF_m_size, topCutF_x_size, 
+					botPlatF_m_size, botPlatF_x_size, botCutF_m_size, botCutF_x_size, 
+					noTPlatF_m_size, noTPlatF_x_size, noTCutF_m_size, noTCutF_x_size, 
+					xQEDF_x_size, xNoTQEDF_x_size, xNoTQCDF_x_size );
 					
 }
 
