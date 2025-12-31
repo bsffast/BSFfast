@@ -11,4 +11,29 @@ This repository accompanies the paper:
 The code provides tabulated effective BSF cross sections and interpolation
 routines for use in Boltzmann solvers.
 
-Documentation and usage examples will be extended.
+If you use BSFfast in a publication, please cite the paper above.
+
+## Contact
+
+For questions, comments, or bug reports, please contact:
+
+- stefan.lederer@tum.de  
+- heisig@physik.rwth-aachen.de
+
+## Quick start (Python)
+
+Place the directory `BSFfast_DataCSV/` next to `BSFfast.py`, then:
+
+```python
+from BSFfast import fastXS
+
+# choose model parameters
+x = 20.0
+m = 1000.0  # GeV
+
+# rescaled models (require coupling strength alpha)
+xs = fastXS("dQCD-S", x, m, alpha=0.2)
+
+# SM QCD tables support "cutoff" (default) and "plateau"
+xs_cut = fastXS("QCD-SU", x, m)
+xs_plat = fastXS("QCD-SU", x, m, "plateau")
