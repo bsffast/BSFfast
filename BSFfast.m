@@ -35,31 +35,31 @@ StyleBox[\"constant\",\nFontVariations->{\"Underline\"->True}]\) gauge coupling-
 SetDirectory[BSFfastDataDir];
 	(*SCALAR*)
 (*sbottom & stop*)
-topPlatS=Get["sigBSFeff_stop_asPlateau1.RD.m"];
-topCutS=Get["sigBSFeff_stop_asCutoff1.RD.m"];
-botPlatS=Get["sigBSFeff_sbottom_asPlateau1.RD.m"];
-botCutS=Get["sigBSFeff_sbottom_asCutoff1.RD.m"];
+topPlatS=Get["QCD-SU_plateau.m"];
+topCutS=Get["QCD-SU_cutoff.m"];
+botPlatS=Get["QCD-SD_plateau.m"];
+botCutS=Get["QCD-SD_cutoff.m"];
 (*no transition*)
-noTCutS=Get["sigBSFeff_NoTrans_asCutoff1.RD.m"];
-noTPlatS=Get["sigBSFeff_NoTrans_asPlateau1.RD.m"];
+noTCutS=Get["QCD-S_cutoff.m"];
+noTPlatS=Get["QCD-S_plateau.m"];
 (*constant coupling*)
-xQEDS=Get["xgridSigBSFeff_QED_asConst0.1_m1GeV.m"];
-xNoTQEDS=Get["xgridSigBSFeff_QEDnoTrans_asConst0.1_m1GeV.m"];
-xNoTQCDS=Get["xgridSigBSFeff_QCDnoTrans_asConst0.1_m1GeV.m"];
+xQEDS=Get["dQED-S.m"];
+xNoTQEDS=Get["dQED-SnoTr.m"];
+xNoTQCDS=Get["dQCD-S.m"];
 
 	(*FERMION*)
 (*sbottom & stop*)
-topPlatF=Get["sigBSFeff_stop_asPlateau1.RD.fermion.m"];
-topCutF=Get["sigBSFeff_stop_asCutoff1.RD.fermion.m"];
-botPlatF=Get["sigBSFeff_sbottom_asPlateau1.RD.fermion.m"];
-botCutF=Get["sigBSFeff_sbottom_asCutoff1.RD.fermion.m"];
+topPlatF=Get["QCD-FU_plateau.m"];
+topCutF=Get["QCD-FU_cutoff.m"];
+botPlatF=Get["QCD-FD_plateau.m"];
+botCutF=Get["QCD-FD_cutoff.m"];
 (*no transition*)
-noTCutF=Get["sigBSFeff_NoTrans_asCutoff1.RD.fermion.m"];
-noTPlatF=Get["sigBSFeff_NoTrans_asPlateau1.RD.fermion.m"];
+noTCutF=Get["QCD-F_cutoff.m"];
+noTPlatF=Get["QCD-F_plateau.m"];
 (*constant coupling*)
-xQEDF=Get["xgridSigBSFeff_QED_asConst0.1_m1GeV.fermion.m"];
-xNoTQEDF=Get["xgridSigBSFeff_QEDnoTrans_asConst0.1_m1GeV.fermion.m"];
-xNoTQCDF=Get["xgridSigBSFeff_QCDnoTrans_asConst0.1_m1GeV.fermion.m"];
+xQEDF=Get["dQED-F.m"];
+xNoTQEDF=Get["dQED-FnoTr.m"];
+xNoTQCDF=Get["dQCD-F.m"];
 ResetDirectory[];
 
 (* define interpolation functions *)
