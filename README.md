@@ -7,8 +7,7 @@ in the early Universe.
 This repository accompanies the paper:
 
 **BSFfast: Rapid computation of bound-state effects on annihilation in the early Universe**
-arXiv:2512.23812
-https://arxiv.org/abs/2512.23812
+[arXiv:2512.23812](https://arxiv.org/abs/2512.23812)
 
 The code provides tabulated effective BSF cross sections and interpolation
 routines for use in Boltzmann solvers.
