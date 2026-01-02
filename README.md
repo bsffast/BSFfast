@@ -33,7 +33,7 @@ x = 200.0
 m = 1000.0  # GeV
 
 # rescaled models (require coupling strength alpha)
-xs = fastXS("dQCD-S", x, m, alpha=0.2)
+xs = fastXS("dQCD-S", x, m, alpha=0.1)
 
 # SM QCD tables support "cutoff" (default) and "plateau"
 xs_cut = fastXS("QCD-SU", x, m)
