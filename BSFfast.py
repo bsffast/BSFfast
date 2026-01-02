@@ -231,7 +231,7 @@ def fastXS(model, x, m, alpha=None):
     Returns
     -------
     float
-        Effective thermally averade BSF cross section [GeV^(-2)]
+        Effective thermally averaged BSF cross section [GeV^(-2)]
     """
 
     if model not in _registry:
