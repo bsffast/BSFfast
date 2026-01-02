@@ -1,50 +1,72 @@
 # example_use.py
 
 import numpy as np
+import warnings
+
+# Make warnings one-line and yellow (for nicer terminal output)
+warnings.formatwarning = lambda msg, *args, **kwargs: f"\033[1;33m{msg}\033[0m\n"
+
 from BSFfast import fastXS
+
+
+def header(title):
+    print("\n" + "-" * 60)
+    print(title)
+    print("-" * 60)
 
 
 def main():
 
     # Example parameters
-    x = 100.0          # m / T
-    m = 1000.0         # GeV
+    x = 1.5e5          # m / T
+    m = 2.5e6          # GeV
 
     # ------------------------------------------------------------
-    # 1) Rescaled model with constant alpha
+    # 1) Rescaled dQCD model with constant alpha
     # ------------------------------------------------------------
-    alpha = 0.2
-    xs_dqcd = fastXS("dQCD-S", x, m, alpha)
-    print(f"dQCD-S (alpha={alpha}):  <sigma v> = {xs_dqcd:.3e}")
+    alpha_dQCD = 0.15
+    header(f"1) dQCD-S (constant alpha = {alpha_dQCD})")
+    xs_dqcd = fastXS("dQCD-S", x, m, alpha_dQCD)
+    print(f"<sigma v> = {xs_dqcd:.3e} GeV^(-2)")
 
     # ------------------------------------------------------------
-    # 2) Rescaled model with approximate running alpha
+    # 2) Rescaled dQCD model with approximate running alpha
     # ------------------------------------------------------------
     def alpha_running(q):
         # simple 1-loop QCD running (toy example)
         return 4.0 * np.pi / (7.67 * np.log((q*q + 1.0) / (0.2*0.2)))
-        
+
+    header("2) dQCD-S (approximate running alpha; toy 1-loop running)")
     xs_dqcd_run = fastXS("dQCD-S", x, m, alpha_running)
-    print(f"dQCD-S (running alpha): <sigma v> = {xs_dqcd_run:.3e}")
+    print(f"<sigma v> = {xs_dqcd_run:.3e} GeV^(-2)")
 
     # ------------------------------------------------------------
-    # 3) QED-like model (alpha fixed internally)
+    # 3) Rescaled dQED model with constant alpha
     # ------------------------------------------------------------
-    xs_qed = fastXS("dQED-S", x, m)
-    print(f"dQED-S (alpha_em):      <sigma v> = {xs_qed:.3e}")
+    alpha_dQED = 0.01
+    header(f"3) dQED-S (constant alpha = {alpha_dQED})")
+    xs_dqed = fastXS("dQED-S", x, m, alpha_dQED)
+    print(f"<sigma v> = {xs_dqed:.3e} GeV^(-2)")
 
     # ------------------------------------------------------------
-    # 4) SM QCD model (2D grid, cutoff scheme)
+    # 4) SM QCD model (2D grid, default cutoff scheme)
     # ------------------------------------------------------------
+    header("4) QCD-SU (cutoff scheme)")
     xs_qcd_cut = fastXS("QCD-SU", x, m)
-    print(f"QCD-SU (cutoff):        <sigma v> = {xs_qcd_cut:.3e}")
+    print(f"<sigma v> = {xs_qcd_cut:.3e} GeV^(-2)")
 
     # ------------------------------------------------------------
     # 5) SM QCD model (2D grid, plateau scheme)
     # ------------------------------------------------------------
+    header("5) QCD-SU (plateau scheme)")
     xs_qcd_plat = fastXS("QCD-SU", x, m, "plateau")
-    print(f"QCD-SU (plateau):       <sigma v> = {xs_qcd_plat:.3e}")
+    print(f"<sigma v> = {xs_qcd_plat:.3e} GeV^(-2)\n")
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+

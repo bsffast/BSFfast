@@ -45,18 +45,25 @@ def _thermal_v_from_x(x):
     """
     return np.sqrt(6.0 / x)
 
-def _unitarity_rho_estimate(alpha, v):
+def _unitarity_ratio_estimate(alpha, v):
     """
-    Estimate rho = sigma_BSF / sigma_uni using the Sec. 4.3 fit:
-        log10(alpha) = A + B log10(1/v) + C log10(rho)
-    =>  log10(rho) = (log10(alpha) - A - B log10(1/v)) / C
+    Estimate r = sigma_BSF / sigma_uni from the Sec. 4.3 fit.
+    The fit is written with a negative coefficient in front of log10(rho),
+    so the fitted rho corresponds to ~ sigma_uni / sigma_BSF, hence r = 1/rho.
     """
     if alpha <= 0.0 or v <= 0.0:
         return 0.0
+
     log10_alpha = np.log10(alpha)
     log10_1_over_v = np.log10(1.0 / v)
+
+    # log10(alpha) = A + B log10(1/v) + C log10(rho)  with A,B,C negative (as in paper)
     log10_rho = (log10_alpha - UNI_FIT_A - UNI_FIT_B * log10_1_over_v) / UNI_FIT_C
-    return 10.0 ** log10_rho
+    rho = 10.0 ** log10_rho
+    
+    # invert to get the physically relevant ratio r = sigma_BSF / sigma_uni
+    return 1.0 / rho
+
 
 def _maybe_warn_unitarity(model, x, alpha_eff):
     """
@@ -69,19 +76,19 @@ def _maybe_warn_unitarity(model, x, alpha_eff):
         return
 
     v = _thermal_v_from_x(x)
-    rho = _unitarity_rho_estimate(alpha_eff, v)
+    r = _unitarity_ratio_estimate(alpha_eff, v)
 
     # warn once per model and level
-    if rho > 1.0 and (model, "100") not in _warned:
+    if r > 1.0 and (model, "100") not in _warned:
         _warned.add((model, "100"))
         warnings.warn(
-            "Warning: cross section estimated to violate unitarity limit.",
+            "Warning: cross section estimated to violate unitarity limit:",
             RuntimeWarning
         )
-    elif rho > 0.1 and (model, "10") not in _warned:
+    elif r > 0.1 and (model, "10") not in _warned:
         _warned.add((model, "10"))
         warnings.warn(
-            "Warning: cross section estimated to reach >10% of unitarity limit.",
+            "Warning: cross section estimated to reach >10% of unitarity limit:",
             RuntimeWarning
         )
 
@@ -212,18 +219,19 @@ def fastXS(model, x, m, alpha=None):
     model : str
         Model name, e.g. 'dQCD-S', 'QCD-SU'
     x : float
-        m / T
+        Temperature parameter, x = m / T
     m : float
-        Particle mass
+        Particle mass m [GeV]
     alpha : None, float, or callable(q), or str ('cutoff'/'plateau')
         - None: use reference alpha (rescaled models) or ignore (2D models)
-        - float: constant coupling
-        - callable: running / approximate running alpha(q)
+        - float: constant coupling for rescaled models
+        - callable: running running alpha(q) for approximate rescaling
         - str: scheme override (for QCD-* grids), e.g. "plateau"
 
     Returns
     -------
     float
+        Effective thermally averade BSF cross section [GeV^(-2)]
     """
 
     if model not in _registry:
@@ -259,4 +267,5 @@ def fastXS(model, x, m, alpha=None):
     _maybe_warn_unitarity(model, x, alpha_eff)
 
     return float(xs_func(x, m, alpha_eff))
+
 
