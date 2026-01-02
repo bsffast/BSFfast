@@ -38,3 +38,12 @@ xs = fastXS("dQCD-S", x, m, alpha=0.1)
 # SM QCD tables support "cutoff" (default) and "plateau"
 xs_cut = fastXS("QCD-SU", x, m)
 xs_plat = fastXS("QCD-SU", x, m, "plateau")
+
+```markdown
+
+A more comprehensive Python example is provided in `example_use.py`.
+
+Corresponding example files are also provided for:
+
+- **Mathematica**: `example_use.nb`
+- **C**: `example_use.c`
