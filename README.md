@@ -7,6 +7,7 @@ in the early Universe.
 This repository accompanies the paper:
 
 **BSFfast: Rapid computation of bound-state effects on annihilation in the early Universe**
+arXiv:2512.23812
 
 The code provides tabulated effective BSF cross sections and interpolation
 routines for use in Boltzmann solvers.
@@ -15,10 +16,10 @@ If you use BSFfast in a publication, please cite the paper above.
 
 ## Contact
 
-For questions, comments, or bug reports, please contact:
+For scientific questions, usage issues, or bug reports, please contact:
 
-- stefan.lederer@tum.de  
-- heisig@physik.rwth-aachen.de
+- Stefan Lederer <stefan.lederer@tum.de>
+- Jan Heisig <heisig@physik.rwth-aachen.de>
 
 ## Quick start (Python)
 
@@ -28,7 +29,7 @@ Place the directory `BSFfast_DataCSV/` next to `BSFfast.py`, then:
 from BSFfast import fastXS
 
 # choose model parameters
-x = 20.0
+x = 200.0
 m = 1000.0  # GeV
 
 # rescaled models (require coupling strength alpha)
