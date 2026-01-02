@@ -39,7 +39,7 @@ xs = fastXS("dQCD-S", x, m, alpha=0.1)
 xs_cut = fastXS("QCD-SU", x, m)
 xs_plat = fastXS("QCD-SU", x, m, "plateau")
 
-```markdown
+```
 
 A more comprehensive Python example is provided in `example_use.py`.
 
