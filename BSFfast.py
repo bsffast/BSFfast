@@ -9,7 +9,7 @@ from scipy.interpolate import interp1d, LinearNDInterpolator
 # Configuration
 # ------------------------------------------------------------
 
-DATA_DIR = Path(__file__).parent / "BSFfast_DataCSV"
+DATA_DIR = Path(__file__).parent / "BSFfast_Data"
 
 DEFAULT_SCHEME = "cutoff"
 ALPHA0_DEFAULT = 0.1   # reference coupling for rescaled tables

@@ -616,28 +616,28 @@ void init_library(void) {
 		//function calls are still lacking the data-length information to be passed on !
 
     	//scalars
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-SU_plateau.csv", &topPlatS_m, &topPlatS_x, &topPlatS_data, &topPlatS_m_size, &topPlatS_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-SU_cutoff.csv", &topCutS_m, &topCutS_x, &topCutS_data, &topCutS_m_size, &topCutS_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-SD_plateau.csv", &botPlatS_m, &botPlatS_x, &botPlatS_data, &botPlatS_m_size, &botPlatS_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-SD_cutoff.csv", &botCutS_m, &botCutS_x, &botCutS_data, &botCutS_m_size, &botCutS_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-S_plateau.csv", &noTPlatS_m, &noTPlatS_x, &noTPlatS_data, &noTPlatS_m_size, &noTPlatS_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-S_cutoff.csv", &noTCutS_m, &noTCutS_x, &noTCutS_data, &noTCutS_m_size, &noTCutS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-SU_plateau.csv", &topPlatS_m, &topPlatS_x, &topPlatS_data, &topPlatS_m_size, &topPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-SU_cutoff.csv", &topCutS_m, &topCutS_x, &topCutS_data, &topCutS_m_size, &topCutS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-SD_plateau.csv", &botPlatS_m, &botPlatS_x, &botPlatS_data, &botPlatS_m_size, &botPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-SD_cutoff.csv", &botCutS_m, &botCutS_x, &botCutS_data, &botCutS_m_size, &botCutS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-S_plateau.csv", &noTPlatS_m, &noTPlatS_x, &noTPlatS_data, &noTPlatS_m_size, &noTPlatS_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-S_cutoff.csv", &noTCutS_m, &noTCutS_x, &noTCutS_data, &noTCutS_m_size, &noTCutS_x_size);
 
-	BSFfast_importData_1d("BSFfast_DataCSV/dQED-S.csv", &xQEDS_m, &xQEDS_x, &xQEDS_data, &xQEDS_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/dQED-SnoTr.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQEDS_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/dQCD-S.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQCDS_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQED-S.csv", &xQEDS_m, &xQEDS_x, &xQEDS_data, &xQEDS_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQED-SnoTr.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQEDS_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQCD-S.csv", &xNoTQEDS_m, &xNoTQEDS_x, &xNoTQEDS_data, &xNoTQCDS_x_size);
 	
 	    //fermions
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-FU_plateau.csv", &topPlatF_m, &topPlatF_x, &topPlatF_data, &topPlatF_m_size, &topPlatF_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-FU_cutoff.csv", &topCutF_m, &topCutF_x, &topCutF_data, &topCutF_m_size, &topCutF_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-FD_plateau.csv", &botPlatF_m, &botPlatF_x, &botPlatF_data, &botPlatF_m_size, &botPlatF_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-FD_cutoff.csv", &botCutF_m, &botCutF_x, &botCutF_data, &botCutF_m_size, &botCutF_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-F_plateau.csv", &noTPlatF_m, &noTPlatF_x, &noTPlatF_data, &noTPlatF_m_size, &noTPlatF_x_size);
-	BSFfast_importData_2d("BSFfast_DataCSV/QCD-F_cutoff.csv", &noTCutF_m, &noTCutF_x, &noTCutF_data, &noTCutF_m_size, &noTCutF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-FU_plateau.csv", &topPlatF_m, &topPlatF_x, &topPlatF_data, &topPlatF_m_size, &topPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-FU_cutoff.csv", &topCutF_m, &topCutF_x, &topCutF_data, &topCutF_m_size, &topCutF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-FD_plateau.csv", &botPlatF_m, &botPlatF_x, &botPlatF_data, &botPlatF_m_size, &botPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-FD_cutoff.csv", &botCutF_m, &botCutF_x, &botCutF_data, &botCutF_m_size, &botCutF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-F_plateau.csv", &noTPlatF_m, &noTPlatF_x, &noTPlatF_data, &noTPlatF_m_size, &noTPlatF_x_size);
+	BSFfast_importData_2d("BSFfast_Data/QCD-F_cutoff.csv", &noTCutF_m, &noTCutF_x, &noTCutF_data, &noTCutF_m_size, &noTCutF_x_size);
 
-	BSFfast_importData_1d("BSFfast_DataCSV/dQED-F.csv", &xQEDF_m, &xQEDF_x, &xQEDF_data, &xQEDF_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/dQED-FnoTr.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQEDF_x_size);
-	BSFfast_importData_1d("BSFfast_DataCSV/dQCD-F.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQCDF_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQED-F.csv", &xQEDF_m, &xQEDF_x, &xQEDF_data, &xQEDF_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQED-FnoTr.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQEDF_x_size);
+	BSFfast_importData_1d("BSFfast_Data/dQCD-F.csv", &xNoTQEDF_m, &xNoTQEDF_x, &xNoTQEDF_data, &xNoTQCDF_x_size);
 	
 	
 	printf("BSFfast > imported table sizes (scalars):\n          topP= %i x %i,topC= %i x %i, botP= %i x %i, botC= %i x %i, notP= %i x %i, notC= %i x %i |\n          QED= %i , QEDnot= %i , QCD= %i\n", 
