@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    465780,       8994]
-NotebookOptionsPosition[    463739,       8951]
-NotebookOutlinePosition[    464141,       8967]
-CellTagsIndexPosition[    464098,       8964]
+NotebookDataLength[    467531,       9037]
+NotebookOptionsPosition[    465544,       8995]
+NotebookOutlinePosition[    465892,       9010]
+CellTagsIndexPosition[    465849,       9007]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,22 +25,23 @@ Cell[BoxData[
   "]"}]], "Input",
  CellChangeTimes->{{3.975951062287106*^9, 3.97595106758057*^9}, {
   3.9767788119056463`*^9, 3.97677882336305*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"2acbe270-45d7-4c02-9088-86add461852f"],
+ CellLabel->"In[30]:=",ExpressionUUID->"2acbe270-45d7-4c02-9088-86add461852f"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["BSFfastFunctionNames"], "Input",
  CellChangeTimes->{{3.9767809424182177`*^9, 3.976780943578643*^9}},
- CellLabel->"In[2]:=",ExpressionUUID->"eac385fd-a377-43dc-8890-90734c158128"],
+ CellLabel->"In[31]:=",ExpressionUUID->"eac385fd-a377-43dc-8890-90734c158128"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-  "Private`BSFfast\[Sigma]vtopPlat", ",", "Private`BSFfast\[Sigma]vtopCut", ",",
-    "Private`BSFfast\[Sigma]vbotPlat", ",", "Private`BSFfast\[Sigma]vbotCut", 
-   ",", "Private`BSFfast\[Sigma]vnoTPlat", ",", 
-   "Private`BSFfast\[Sigma]vnoTCut", ",", "Private`BSFfast\[Sigma]vdqedConst",
-    ",", "Private`BSFfast\[Sigma]vdqedNoTConst", ",", 
+  "Private`BSFfast\[Sigma]vtopPlat", ",", "Private`BSFfast\[Sigma]vtopCut", 
+   ",", "Private`BSFfast\[Sigma]vbotPlat", ",", 
+   "Private`BSFfast\[Sigma]vbotCut", ",", "Private`BSFfast\[Sigma]vnoTPlat", 
+   ",", "Private`BSFfast\[Sigma]vnoTCut", ",", 
+   "Private`BSFfast\[Sigma]vdqedConst", ",", 
+   "Private`BSFfast\[Sigma]vdqedNoTConst", ",", 
    "Private`BSFfast\[Sigma]vqcdNoTConst", ",", 
    "Private`BSFfast\[Sigma]vtopPlatF", ",", "Private`BSFfast\[Sigma]vtopCutF",
     ",", "Private`BSFfast\[Sigma]vbotPlatF", ",", 
@@ -52,8 +53,9 @@ Cell[BoxData[
    "Private`BSFfast\[Sigma]vqcdNoTConstF", " ", 
     "Private`BSFfast\[Sigma]vqedInclTopF"}], ",", 
    "Private`BSFfast\[Sigma]vqedExclTopF"}], "}"}]], "Output",
- CellChangeTimes->{3.976780943945623*^9, 3.976787671512224*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"7b0baa52-b476-47ba-adec-a152f4a7702b"]
+ CellChangeTimes->{3.976780943945623*^9, 3.976787671512224*^9, 
+  3.977136410469195*^9, 3.9771366170574207`*^9, 3.9771367801497717`*^9},
+ CellLabel->"Out[31]=",ExpressionUUID->"e026b76e-7469-44fd-a9e7-edb47e74de5d"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -61,7 +63,7 @@ Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"?", "BSFfastSigmavEffBSF"}]], "Input",
  CellChangeTimes->{{3.975950442330594*^9, 3.9759504714473553`*^9}},
- CellLabel->"In[3]:=",ExpressionUUID->"24a190e6-cfc7-4cd1-8e8c-11eaf7c21aa3"],
+ CellLabel->"In[32]:=",ExpressionUUID->"24a190e6-cfc7-4cd1-8e8c-11eaf7c21aa3"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -74,14 +76,7 @@ Cell[BoxData[
          {
           ItemBox[
            PaneBox[
-            StyleBox[
-             TagBox[
-              TooltipBox[
-               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
-                StripOnInput->False],
-               "\"Symbol\"",
-               TooltipStyle->"TextStyling"],
-              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
              StripOnInput->False,
              BaseStyle -> None],
             FrameMargins->{{4, 0}, {-1, 1}}],
@@ -96,12 +91,12 @@ Cell[BoxData[
             
             StyleBox["\<\"BSFfast\[Sigma]vtopPlat[ModelString(,alpha)][ mass \
 , x ]\\nEffective BSF annihilation cross-section for the specified models:\\n \
-    \\\"QCD-_U\\\", \\\"QCD-_D\\\", \\\"QCD-_\\\", \\\"dQCD-_\\\", \\\"dQED-_\
-\\\", \\\"dQED-_nT\\\", \\\"dQED-F\\\", \\\"dQED-FnoTop\\\".  The \\\"_\\\" \
-must be filled by \\\"S\\\" (scalar) or \\\"F\\\" (fermion). \\nQCD refers to \
-SM-QCD and involves running couplings.\\n m = constituent mass is here \
-expected in GeV. x = m/T is inverse temperature. alpha defines the gauge \
-coupling strength in \\\"dQCD\\\" and \\\"dQED\\\" models, and the \
+    \\\"QCD-_U\\\", \\\"QCD-_D\\\", \\\"QCD-_\\\", \\\"QED-_\\\", \
+\\\"QED-FexclTop\\\", \\\"dQCD-_\\\", \\\"dQED-_\\\", \\\"dQED-_noTr\\\".  \
+The \\\"_\\\" must be filled by \\\"S\\\" (scalar) or \\\"F\\\" (fermion). \
+\\nQCD refers to SM-QCD and involves running couplings.\\n m = constituent \
+mass is here expected in GeV. x = m/T is inverse temperature. alpha defines \
+the gauge coupling strength in \\\"dQCD\\\" and \\\"dQED\\\" models, and the \
 prescription of the running coupling \\!\\(\\*SubscriptBox[\\(\[Alpha]\\), \
 \\(s\\)]\\)(\[Mu]<1GeV)=const or =0 for \\\"QCD\\\" models. (not required for \
 \\\"QED-_\\\".)\\n Call \
@@ -116,174 +111,205 @@ details.\"\>", "InformationUsageText",
            BaseStyle->"InformationUsageSubtitleBackground",
            StripOnInput->False]},
          {
-          PaneBox[
-           TagBox[GridBox[{
-              {
-               StyleBox[
-                TagBox[
-                 TooltipBox[
-                  StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
-                   StripOnInput->False],
-                  "\"Definitions\"",
-                  TooltipStyle->"TextStyling"],
-                 Annotation[#, "Definitions", "Tooltip"]& ], "DialogStyle",
-                StripOnInput->False]},
-              {
-               TemplateBox[{"\"\[ThinSpace]\"", 
-                 GridBox[{{
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", "\"QED-F\"", "]"}], 
-                    "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqedInclTopF", "[", 
-                    "0.007757951900698216`", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    
-                    RowBox[{
-                    "BSFfastSigmavEffBSF", "[", "\"QED-F_noTop\"", "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
-                    "0.007757951900698216`", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", "\"QED-S\"", "]"}], 
-                    "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vdqedConstS", "[", 
-                    "0.007757951900698216`", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-F\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vnoTCutF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-F\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vnoTPlatF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-FD\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vbotCutF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-FD\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vbotPlatF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-FU\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vtopCutF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-FU\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vtopPlatF"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-S\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vnoTCutS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-S\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vnoTPlatS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-SD\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vbotCutS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-SD\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vbotPlatS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-SU\"", ",", "\"Cut\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vtopCutS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QCD-SU\"", ",", "\"Plat\""}], "]"}], "=", 
-                    "Private`BSFfast\[Sigma]vtopPlatS"}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQED-S\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vdqedConstS", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQED-SnoT\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vdqedNoTConstS", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQCD-S\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqcdNoTConstS", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQED-F\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vdqedConstF", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQED-FnoT\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vdqedNoTConstF", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"dQCD-F\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqcdNoTConstF", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QED-F\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqedInclTopF", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}, {
-                    RowBox[{
-                    RowBox[{"BSFfastSigmavEffBSF", "[", 
-                    RowBox[{"\"QED-F_noTop\"", ",", 
-                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
-                    
-                    RowBox[{
-                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
-                    "Private`alpha", "]"}]}]}, {" "}}, 
-                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
-                  DefaultBaseStyle -> "Column", 
-                  GridBoxItemSize -> {
-                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
-                "RowDefault"]}
-             },
-             DefaultBaseStyle->"Column",
-             GridBoxAlignment->{"Columns" -> {{Left}}},
-             
-             GridBoxItemSize->{
-              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
-            "Column"],
-           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
-         {
           PaneBox[GridBox[{
              {
               
               DynamicModuleBox[{System`InformationDump`open$$ = {
-               False, False, False, False, False, False}}, 
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
                StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-SU\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vtopPlatS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-SU\"\>", ",", "\<\"Cut\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vtopCutS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-SD\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vbotPlatS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-SD\"\>", ",", "\<\"Cut\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vbotCutS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-S\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vnoTPlatS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-S\"\>", ",", "\<\"Cut\"\>"}], "]"}], "=",
+                     "Private`BSFfast\[Sigma]vnoTCutS"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-FU\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vtopPlatF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-FU\"\>", ",", "\<\"Cut\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vtopCutF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-FD\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vbotPlatF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-FD\"\>", ",", "\<\"Cut\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vbotCutF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-F\"\>", ",", "\<\"Plat\"\>"}], "]"}], 
+                    "=", "Private`BSFfast\[Sigma]vnoTPlatF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QCD-F\"\>", ",", "\<\"Cut\"\>"}], "]"}], "=",
+                     "Private`BSFfast\[Sigma]vnoTCutF"}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "BSFfastSigmavEffBSF", "[", "\<\"QED-S\"\>", "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedConstS", "[", 
+                    "0.007757951900698216`", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "BSFfastSigmavEffBSF", "[", "\<\"QED-F\"\>", "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedInclTopF", "[", 
+                    "0.007757951900698216`", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "BSFfastSigmavEffBSF", "[", "\<\"QED-FnoTop\"\>", "]"}], 
+                    "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
+                    "0.007757951900698216`", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{
+                    "BSFfastSigmavEffBSF", "[", "\<\"QED-FexclTop\"\>", "]"}],
+                     "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
+                    "0.007757951900698216`", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-S\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedConstS", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-SnoT\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedNoTConstS", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQCD-S\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqcdNoTConstS", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-F\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedConstF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-FnoT\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedNoTConstF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQCD-F\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqcdNoTConstF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QED-F\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedInclTopF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QED-FnoTop\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-SnoTr\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedNoTConstS", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"dQED-FnoTr\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vdqedNoTConstF", "[", 
+                    "Private`alpha", "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"BSFfastSigmavEffBSF", "[", 
+                    RowBox[{"\<\"QED-FexclTop\"\>", ",", 
+                    RowBox[{"Private`alpha_", "?", "NumericQ"}]}], "]"}], "=", 
+                    RowBox[{
+                    "Private`BSFfast\[Sigma]vqedExclTopF", "[", 
+                    "Private`alpha", "]"}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
                   {
                    TagBox[
                     TooltipBox[
@@ -322,7 +348,7 @@ details.\"\>", "InformationUsageText",
                 Offset[0.2], {
                  Offset[3.6]}, 
                 Offset[0.2]}}],
-           FrameMargins->{{6, 6}, {6, 3}}], ""},
+           FrameMargins->6], ""},
          {
           ItemBox[
            TagBox[
@@ -370,14 +396,7 @@ details.\"\>", "InformationUsageText",
          {
           ItemBox[
            PaneBox[
-            StyleBox[
-             TagBox[
-              TooltipBox[
-               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
-                StripOnInput->False],
-               "\"Symbol\"",
-               TooltipStyle->"TextStyling"],
-              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
              StripOnInput->False],
             FrameMargins->{{4, 0}, {-1, 1}}],
            BaseStyle->"InformationTitleBackground",
@@ -391,12 +410,12 @@ details.\"\>", "InformationUsageText",
             
             StyleBox["\<\"BSFfast\[Sigma]vtopPlat[ModelString(,alpha)][ mass \
 , x ]\\nEffective BSF annihilation cross-section for the specified models:\\n \
-    \\\"QCD-_U\\\", \\\"QCD-_D\\\", \\\"QCD-_\\\", \\\"dQCD-_\\\", \\\"dQED-_\
-\\\", \\\"dQED-_nT\\\", \\\"dQED-F\\\", \\\"dQED-FnoTop\\\".  The \\\"_\\\" \
-must be filled by \\\"S\\\" (scalar) or \\\"F\\\" (fermion). \\nQCD refers to \
-SM-QCD and involves running couplings.\\n m = constituent mass is here \
-expected in GeV. x = m/T is inverse temperature. alpha defines the gauge \
-coupling strength in \\\"dQCD\\\" and \\\"dQED\\\" models, and the \
+    \\\"QCD-_U\\\", \\\"QCD-_D\\\", \\\"QCD-_\\\", \\\"QED-_\\\", \
+\\\"QED-FexclTop\\\", \\\"dQCD-_\\\", \\\"dQED-_\\\", \\\"dQED-_noTr\\\".  \
+The \\\"_\\\" must be filled by \\\"S\\\" (scalar) or \\\"F\\\" (fermion). \
+\\nQCD refers to SM-QCD and involves running couplings.\\n m = constituent \
+mass is here expected in GeV. x = m/T is inverse temperature. alpha defines \
+the gauge coupling strength in \\\"dQCD\\\" and \\\"dQED\\\" models, and the \
 prescription of the running coupling \\!\\(\\*SubscriptBox[\\(\[Alpha]\\), \
 \\(s\\)]\\)(\[Mu]<1GeV)=const or =0 for \\\"QCD\\\" models. (not required for \
 \\\"QED-_\\\".)\\n Call \
@@ -418,11 +437,11 @@ details.\"\>", "InformationUsageText",
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpener"],
-               ImageSizeCache->{10., {1.89453125, 8.10546875}}], True->
+               ImageSizeCache->{10., {2., 8.}}], True->
               
               DynamicBox[FEPrivate`FrontEndResource[
                "FEBitmaps", "DownPointerOpenerHot"],
-               ImageSizeCache->{10., {1.89453125, 8.10546875}}]}, Dynamic[
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
               System`InformationDump`mouseOver$$]],
              Alignment->Left,
              Appearance->{"Default" -> None},
@@ -462,12 +481,13 @@ details.\"\>", "InformationUsageText",
     BaseStyle->"InformationGridFrame",
     StripOnInput->False], "InformationGridPlain",
    StripOnInput->False],
-  InformationData[<|
+  InformationData[
+   Association[
    "ObjectType" -> "Symbol", "Usage" -> 
     "BSFfast\[Sigma]vtopPlat[ModelString(,alpha)][ mass , x ]\nEffective BSF \
 annihilation cross-section for the specified models:\n     \"QCD-_U\", \
-\"QCD-_D\", \"QCD-_\", \"dQCD-_\", \"dQED-_\", \"dQED-_nT\", \"dQED-F\", \
-\"dQED-FnoTop\".  The \"_\" must be filled by \"S\" (scalar) or \"F\" \
+\"QCD-_D\", \"QCD-_\", \"QED-_\", \"QED-FexclTop\", \"dQCD-_\", \"dQED-_\", \
+\"dQED-_noTr\".  The \"_\" must be filled by \"S\" (scalar) or \"F\" \
 (fermion). \nQCD refers to SM-QCD and involves running couplings.\n m = \
 constituent mass is here expected in GeV. x = m/T is inverse temperature. \
 alpha defines the gauge coupling strength in \"dQCD\" and \"dQED\" models, \
@@ -478,36 +498,38 @@ more details.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
     None, "DownValues" -> 
     Information`InformationValueForm[
      DownValues, BSFfast`BSFfastSigmavEffBSF, {
-      BSFfast`BSFfastSigmavEffBSF["QED-F"] -> 
-       Private`BSFfast\[Sigma]vqedInclTopF[0.007757951900698216], 
-       BSFfast`BSFfastSigmavEffBSF["QED-F_noTop"] -> 
-       Private`BSFfast\[Sigma]vqedExclTopF[0.007757951900698216], 
-       BSFfast`BSFfastSigmavEffBSF["QED-S"] -> 
-       Private`BSFfast\[Sigma]vdqedConstS[0.007757951900698216], 
-       BSFfast`BSFfastSigmavEffBSF["QCD-F", "Cut"] -> 
-       Private`BSFfast\[Sigma]vnoTCutF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-F", "Plat"] -> 
-       Private`BSFfast\[Sigma]vnoTPlatF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-FD", "Cut"] -> 
-       Private`BSFfast\[Sigma]vbotCutF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-FD", "Plat"] -> 
-       Private`BSFfast\[Sigma]vbotPlatF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-FU", "Cut"] -> 
-       Private`BSFfast\[Sigma]vtopCutF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-FU", "Plat"] -> 
-       Private`BSFfast\[Sigma]vtopPlatF, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-S", "Cut"] -> 
-       Private`BSFfast\[Sigma]vnoTCutS, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-S", "Plat"] -> 
-       Private`BSFfast\[Sigma]vnoTPlatS, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-SD", "Cut"] -> 
-       Private`BSFfast\[Sigma]vbotCutS, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-SD", "Plat"] -> 
-       Private`BSFfast\[Sigma]vbotPlatS, 
+      BSFfast`BSFfastSigmavEffBSF["QCD-SU", "Plat"] -> 
+       Private`BSFfast\[Sigma]vtopPlatS, 
        BSFfast`BSFfastSigmavEffBSF["QCD-SU", "Cut"] -> 
        Private`BSFfast\[Sigma]vtopCutS, 
-       BSFfast`BSFfastSigmavEffBSF["QCD-SU", "Plat"] -> 
-       Private`BSFfast\[Sigma]vtopPlatS, BSFfast`BSFfastSigmavEffBSF["dQED-S", 
+       BSFfast`BSFfastSigmavEffBSF["QCD-SD", "Plat"] -> 
+       Private`BSFfast\[Sigma]vbotPlatS, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-SD", "Cut"] -> 
+       Private`BSFfast\[Sigma]vbotCutS, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-S", "Plat"] -> 
+       Private`BSFfast\[Sigma]vnoTPlatS, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-S", "Cut"] -> 
+       Private`BSFfast\[Sigma]vnoTCutS, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-FU", "Plat"] -> 
+       Private`BSFfast\[Sigma]vtopPlatF, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-FU", "Cut"] -> 
+       Private`BSFfast\[Sigma]vtopCutF, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-FD", "Plat"] -> 
+       Private`BSFfast\[Sigma]vbotPlatF, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-FD", "Cut"] -> 
+       Private`BSFfast\[Sigma]vbotCutF, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-F", "Plat"] -> 
+       Private`BSFfast\[Sigma]vnoTPlatF, 
+       BSFfast`BSFfastSigmavEffBSF["QCD-F", "Cut"] -> 
+       Private`BSFfast\[Sigma]vnoTCutF, BSFfast`BSFfastSigmavEffBSF["QED-S"] -> 
+       Private`BSFfast\[Sigma]vdqedConstS[0.007757951900698216], 
+       BSFfast`BSFfastSigmavEffBSF["QED-F"] -> 
+       Private`BSFfast\[Sigma]vqedInclTopF[0.007757951900698216], 
+       BSFfast`BSFfastSigmavEffBSF["QED-FnoTop"] -> 
+       Private`BSFfast\[Sigma]vqedExclTopF[0.007757951900698216], 
+       BSFfast`BSFfastSigmavEffBSF["QED-FexclTop"] -> 
+       Private`BSFfast\[Sigma]vqedExclTopF[0.007757951900698216], 
+       BSFfast`BSFfastSigmavEffBSF["dQED-S", 
          PatternTest[
           Pattern[Private`alpha, 
            Blank[]], NumericQ]] -> 
@@ -542,18 +564,34 @@ more details.", "Documentation" -> None, "OwnValues" -> None, "UpValues" ->
           Pattern[Private`alpha, 
            Blank[]], NumericQ]] -> 
        Private`BSFfast\[Sigma]vqedInclTopF[Private`alpha], 
-       BSFfast`BSFfastSigmavEffBSF["QED-F_noTop", 
+       BSFfast`BSFfastSigmavEffBSF["QED-FnoTop", 
+         PatternTest[
+          Pattern[Private`alpha, 
+           Blank[]], NumericQ]] -> 
+       Private`BSFfast\[Sigma]vqedExclTopF[Private`alpha], 
+       BSFfast`BSFfastSigmavEffBSF["dQED-SnoTr", 
+         PatternTest[
+          Pattern[Private`alpha, 
+           Blank[]], NumericQ]] -> 
+       Private`BSFfast\[Sigma]vdqedNoTConstS[Private`alpha], 
+       BSFfast`BSFfastSigmavEffBSF["dQED-FnoTr", 
+         PatternTest[
+          Pattern[Private`alpha, 
+           Blank[]], NumericQ]] -> 
+       Private`BSFfast\[Sigma]vdqedNoTConstF[Private`alpha], 
+       BSFfast`BSFfastSigmavEffBSF["QED-FexclTop", 
          PatternTest[
           Pattern[Private`alpha, 
            Blank[]], NumericQ]] -> 
        Private`BSFfast\[Sigma]vqedExclTopF[Private`alpha]}], "SubValues" -> 
     None, "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
     "Options" -> None, "Attributes" -> {}, "FullName" -> 
-    "BSFfast`BSFfastSigmavEffBSF"|>, False]]], "Output",
+    "BSFfast`BSFfastSigmavEffBSF"], False]]], "Output",
  CellChangeTimes->{{3.975950443187194*^9, 3.975950471773211*^9}, 
    3.9767788387017736`*^9, 3.976780366084713*^9, 3.97678529879825*^9, 
-   3.97678767168058*^9},
- CellLabel->"Out[3]=",ExpressionUUID->"557e485b-df9c-4672-b913-cb7b3cb4ef82"]
+   3.97678767168058*^9, 3.9771364125553293`*^9, 3.977136618637662*^9, 
+   3.977136781925322*^9},
+ CellLabel->"Out[32]=",ExpressionUUID->"37cb0da9-e15c-4db7-82a3-6d74af807e8a"]
 }, Open  ]],
 
 Cell["\<\
@@ -586,14 +624,14 @@ Cell[BoxData[
     RowBox[{"10", "^", "7."}], ",", "12345.6"}], "]"}], "//", 
   "AbsoluteTiming"}]], "Input",
  CellChangeTimes->{{3.975950933987008*^9, 3.9759510429035053`*^9}},
- CellLabel->"In[4]:=",ExpressionUUID->"82f18d04-99c0-4c8a-be93-ef400b7ec26e"],
+ CellLabel->"In[25]:=",ExpressionUUID->"82f18d04-99c0-4c8a-be93-ef400b7ec26e"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0.000096`", ",", "5.07632226578204`*^-15"}], "}"}]], "Output",
+  RowBox[{"0.000036`", ",", "5.07632226578204`*^-15"}], "}"}]], "Output",
  CellChangeTimes->{{3.975950948421742*^9, 3.975950953222804*^9}, 
-   3.975951040425148*^9, 3.976787673106429*^9},
- CellLabel->"Out[4]=",ExpressionUUID->"d4fee76e-86fe-425d-ba1c-8af84d6df2de"]
+   3.975951040425148*^9, 3.976787673106429*^9, 3.977136417149976*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"146eeace-9f3f-4ef0-9ee5-90dca5430b57"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -5989,10 +6027,11 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{"model", ",", 
         RowBox[{"{", 
-         RowBox[{"\"\<dQCD-S\>\"", ",", "\"\<dQCD-F\>\"", 
-          ",", "\"\<dQED-S\>\"", ",", "\"\<dQED-F\>\"", 
-          ",", "\"\<dQED-S_nT\>\"", ",", "\"\<dQED-F_nT\>\""}], "}"}]}], 
-       "}"}]}], "]"}], "//", "Evaluate"}]}], ";"}], "\[IndentingNewLine]", 
+         RowBox[{
+         "\"\<dQCD-S\>\"", ",", "\"\<dQCD-F\>\"", ",", "\"\<dQED-S\>\"", ",", 
+          "\"\<dQED-F\>\"", ",", "\"\<dQED-SnoTr\>\"", ",", 
+          "\"\<dQED-FnoTr\>\""}], "}"}]}], "}"}]}], "]"}], "//", 
+    "Evaluate"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"LogLogPlot", "[", 
   RowBox[{"fnresc", ",", 
    RowBox[{"{", 
@@ -6000,8 +6039,10 @@ Cell[BoxData[{
      RowBox[{"10", "^", "6"}]}], "}"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.975950410140634*^9, 3.975950518482644*^9}, {
   3.975950549288683*^9, 3.975950604706147*^9}, {3.9759506396788692`*^9, 
-  3.975950701541154*^9}},
- CellLabel->"In[7]:=",ExpressionUUID->"fedc795e-c371-4408-a0db-60835b42b60b"],
+  3.975950701541154*^9}, {3.9771364304284782`*^9, 3.977136463000493*^9}, {
+  3.977136559142531*^9, 
+  3.9771365606035023`*^9}},ExpressionUUID->"fedc795e-c371-4408-a0db-\
+60835b42b60b"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -7703,11 +7744,12 @@ Cell[BoxData[
    RowBox[{"\"\<QED-F\>\"", ",", 
     RowBox[{"1", "/", "128.9"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.9767867464865103`*^9, 3.976786754446694*^9}},
- CellLabel->"In[9]:=",ExpressionUUID->"8a8aa317-ec09-41b7-9632-9c254cae4643"],
+ CellLabel->"In[26]:=",ExpressionUUID->"8a8aa317-ec09-41b7-9632-9c254cae4643"],
 
 Cell[BoxData["True"], "Output",
- CellChangeTimes->{3.976786757232685*^9, 3.9767877126241817`*^9},
- CellLabel->"Out[9]=",ExpressionUUID->"488201fb-562f-432b-a80a-e464b371e62b"]
+ CellChangeTimes->{3.976786757232685*^9, 3.9767877126241817`*^9, 
+  3.9771365739057426`*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"bd36fc29-ee34-48ff-9437-bcd4d4dffeac"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7728,9 +7770,10 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{"model", ",", 
         RowBox[{"{", 
-         RowBox[{"\"\<QED-S\>\"", ",", "\"\<QED-F\>\"", 
-          ",", "\"\<QED-F_noTop\>\""}], "}"}]}], "}"}]}], "]"}], "//", 
-    "Evaluate"}]}], ";"}], "\[IndentingNewLine]", 
+         RowBox[{
+         "\"\<QED-S\>\"", ",", "\"\<QED-F\>\"", ",", "\"\<QED-FexclTop\>\""}],
+          "}"}]}], "}"}]}], "]"}], "//", "Evaluate"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{"LogLogPlot", "[", 
   RowBox[{"fnSMqed", ",", 
    RowBox[{"{", 
@@ -7742,8 +7785,9 @@ Cell[BoxData[{
      RowBox[{"Bold", ",", "Bold", ",", "DotDashed"}], "}"}]}]}], 
   "]"}]}], "Input",
  CellChangeTimes->{{3.976786714677081*^9, 3.976786813575203*^9}, {
-  3.9767879725752993`*^9, 3.976787993801393*^9}},
- CellLabel->"In[36]:=",ExpressionUUID->"aae314b9-4b30-4f49-befb-c9a29a4cc1c0"],
+  3.9767879725752993`*^9, 3.976787993801393*^9}, {3.9771365781418123`*^9, 
+  3.9771365855120497`*^9}},ExpressionUUID->"aae314b9-4b30-4f49-befb-\
+c9a29a4cc1c0"],
 
 Cell[BoxData[
  TemplateBox[{
@@ -8951,9 +8995,8 @@ h7GltZlVBL4Yy+6ZPkbB/Y5LemElgeWuGs2K7xTkV1pZ1N0iMCGgglVjroD1
 },
 WindowSize->{1252.5, 709.5},
 WindowMargins->{{Automatic, 27.75}, {77.25, Automatic}},
-FrontEndVersion->"14.2 for Linux x86 (64-bit) (March 16, 2025)",
-StyleDefinitions->"Default.nb",
-ExpressionUUID->"c5d1bf10-8520-4125-aa3b-7959f5e78c21"
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
 
@@ -8966,35 +9009,35 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 332, 7, 29, "Input",ExpressionUUID->"2acbe270-45d7-4c02-9088-86add461852f"],
+Cell[554, 20, 333, 7, 30, "Input",ExpressionUUID->"2acbe270-45d7-4c02-9088-86add461852f"],
 Cell[CellGroupData[{
-Cell[911, 31, 192, 2, 29, "Input",ExpressionUUID->"eac385fd-a377-43dc-8890-90734c158128"],
-Cell[1106, 35, 1102, 20, 117, "Output",ExpressionUUID->"7b0baa52-b476-47ba-adec-a152f4a7702b"]
+Cell[912, 31, 193, 2, 30, "Input",ExpressionUUID->"eac385fd-a377-43dc-8890-90734c158128"],
+Cell[1108, 35, 1180, 22, 119, "Output",ExpressionUUID->"e026b76e-7469-44fd-a9e7-edb47e74de5d"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2245, 60, 208, 3, 29, "Input",ExpressionUUID->"24a190e6-cfc7-4cd1-8e8c-11eaf7c21aa3"],
-Cell[2456, 65, 22307, 490, 257, "Output",ExpressionUUID->"557e485b-df9c-4672-b913-cb7b3cb4ef82"]
+Cell[2325, 62, 209, 3, 30, "Input",ExpressionUUID->"24a190e6-cfc7-4cd1-8e8c-11eaf7c21aa3"],
+Cell[2537, 67, 23849, 526, 273, "Output",ExpressionUUID->"37cb0da9-e15c-4db7-82a3-6d74af807e8a"]
 }, Open  ]],
-Cell[24778, 558, 854, 17, 143, "Text",ExpressionUUID->"35fbddfd-0c05-4444-b9fe-137efe9abc61"],
+Cell[26401, 596, 854, 17, 150, "Text",ExpressionUUID->"35fbddfd-0c05-4444-b9fe-137efe9abc61"],
 Cell[CellGroupData[{
-Cell[25657, 579, 392, 9, 29, "Input",ExpressionUUID->"82f18d04-99c0-4c8a-be93-ef400b7ec26e"],
-Cell[26052, 590, 294, 5, 34, "Output",ExpressionUUID->"d4fee76e-86fe-425d-ba1c-8af84d6df2de"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[26383, 600, 1852, 51, 93, "Input",ExpressionUUID->"fde51b0f-ff60-4b6e-9140-362f8ac5d66a"],
-Cell[28238, 653, 295137, 5316, 230, "Output",ExpressionUUID->"afe52da8-9d73-4e8f-88e8-379c00bd1240"]
+Cell[27280, 617, 393, 9, 30, "Input",ExpressionUUID->"82f18d04-99c0-4c8a-be93-ef400b7ec26e"],
+Cell[27676, 628, 317, 5, 37, "Output",ExpressionUUID->"146eeace-9f3f-4ef0-9ee5-90dca5430b57"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[323412, 5974, 1126, 29, 69, "Input",ExpressionUUID->"fedc795e-c371-4408-a0db-60835b42b60b"],
-Cell[324541, 6005, 82012, 1688, 230, "Output",ExpressionUUID->"f8adff7f-36ae-4bda-a65d-c4ea0d9f0996"]
+Cell[28030, 638, 1852, 51, 94, "Input",ExpressionUUID->"fde51b0f-ff60-4b6e-9140-362f8ac5d66a"],
+Cell[29885, 691, 295137, 5316, 237, "Output",ExpressionUUID->"afe52da8-9d73-4e8f-88e8-379c00bd1240"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[406590, 7698, 365, 7, 29, "Input",ExpressionUUID->"8a8aa317-ec09-41b7-9632-9c254cae4643"],
-Cell[406958, 7707, 175, 2, 33, "Output",ExpressionUUID->"488201fb-562f-432b-a80a-e464b371e62b"]
+Cell[325059, 6012, 1216, 32, 94, "Input",ExpressionUUID->"fedc795e-c371-4408-a0db-60835b42b60b"],
+Cell[326278, 6046, 82012, 1688, 237, "Output",ExpressionUUID->"f8adff7f-36ae-4bda-a65d-c4ea0d9f0996"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[407170, 7714, 1109, 31, 49, "Input",ExpressionUUID->"aae314b9-4b30-4f49-befb-c9a29a4cc1c0"],
-Cell[408282, 7747, 55441, 1201, 232, "Output",ExpressionUUID->"5b2a75b6-b83f-416c-8dee-94a2c7e50325"]
+Cell[408327, 7739, 366, 7, 30, "Input",ExpressionUUID->"8a8aa317-ec09-41b7-9632-9c254cae4643"],
+Cell[408696, 7748, 203, 3, 34, "Output",ExpressionUUID->"bd36fc29-ee34-48ff-9437-bcd4d4dffeac"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[408936, 7756, 1148, 33, 52, "Input",ExpressionUUID->"aae314b9-4b30-4f49-befb-c9a29a4cc1c0"],
+Cell[410087, 7791, 55441, 1201, 237, "Output",ExpressionUUID->"5b2a75b6-b83f-416c-8dee-94a2c7e50325"]
 }, Open  ]]
 }
 ]

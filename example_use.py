@@ -60,8 +60,16 @@ def main():
     # ------------------------------------------------------------
     header("5) QCD-SU (plateau scheme)")
     xs_qcd_plat = fastXS("QCD-SU", x, m, "plateau")
-    print(f"<sigma v> = {xs_qcd_plat:.3e} GeV^(-2)\n")
+    print(f"<sigma v> = {xs_qcd_plat:.3e} GeV^(-2)")
 
+    # ------------------------------------------------------------
+    # 5) SM QED model (default coupling alpha=1/128.9)
+    # ------------------------------------------------------------
+    
+    header("6) QED-S (plateau alpha_em)")
+    xs_qeds = fastXS("QED-S", x, m)
+    print(f"<sigma v> = {xs_qeds:.3e} GeV^(-2)\n")
+    
 
 if __name__ == "__main__":
     main()

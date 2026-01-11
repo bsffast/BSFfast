@@ -79,8 +79,8 @@ xdQEDF=Import["dQED-F.csv","CSV"];
 xNoTdQEDF=Import["dQED-FnoTr.csv","CSV"];
 xNoTQCDF=Import["dQCD-F.csv","CSV"];
 (*QED including S1 decays into fermions*)
-xQEDFinclTop=Import["QED-F_inclTop.csv","CSV"];
-xQEDFexclTop=Import["QED-F_exclTop.csv","CSV"];
+xQEDFinclTop=Import["QED-FinclTop.csv","CSV"];
+xQEDFexclTop=Import["QED-FexclTop.csv","CSV"];
 
 ResetDirectory[];
 
@@ -142,8 +142,8 @@ BSFfastSigmavEffBSF["dQCD-F",alpha_?NumericQ]=BSFfast\[Sigma]vqcdNoTConstF[alpha
 BSFfastSigmavEffBSF["QED-S"]=BSFfast\[Sigma]vdqedConstS[1/128.9];
 BSFfastSigmavEffBSF["QED-F"]=BSFfast\[Sigma]vqedInclTopF[1/128.9];
 BSFfastSigmavEffBSF["QED-F",alpha_?NumericQ]=BSFfast\[Sigma]vqedInclTopF[alpha];
-BSFfastSigmavEffBSF["QED-F_noTop"]=BSFfast\[Sigma]vqedExclTopF[1/128.9];
-BSFfastSigmavEffBSF["QED-F_noTop",alpha_?NumericQ]=BSFfast\[Sigma]vqedExclTopF[alpha];
+BSFfastSigmavEffBSF["QED-FnoTop"]=BSFfast\[Sigma]vqedExclTopF[1/128.9];
+BSFfastSigmavEffBSF["QED-FnoTop",alpha_?NumericQ]=BSFfast\[Sigma]vqedExclTopF[alpha];
 
 
 

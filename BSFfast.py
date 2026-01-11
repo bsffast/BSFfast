@@ -15,6 +15,9 @@ DEFAULT_SCHEME = "cutoff"
 ALPHA0_DEFAULT = 0.1   # reference coupling for rescaled tables
 M0_DEFAULT = None      # read from table (unique mass)
 
+ALPHA_EM_DEFAULT = 1.0 / 128.9  # electromagnetic reference coupling
+M_TOP = 173.0  # top quark mass [GeV] (used for QED-F top-threshold handling)
+
 C_POT_SCALE = 2.0   # q = m * sqrt(C_POT_SCALE / x)
 
 # --- Unitarity warning (Sec. 4.3; fit used for dQCD rescaling) ---
@@ -38,6 +41,26 @@ def _potential_scale(m, x):
     see Eq. (39) and Sec. 3 of the paper.
     """
     return m * np.sqrt(C_POT_SCALE / x)
+
+
+
+def _top_phase_space_weight(m, m_top=M_TOP):
+    """
+    Phase-space weight for opening the t tbar channel in QED-F.
+    We take m_BS ≈ 2 m, so beta = sqrt(1 - 4 m_t^2 / m_BS^2) = sqrt(1 - m_t^2 / m^2).
+    For a vector-like decay to fermions, the kinematic factor scales as beta*(1+2r),
+    with r = m_t^2 / m_BS^2 = m_t^2 / (4 m^2).
+    The result is clamped to [0,1].
+    """
+    if m <= m_top:
+        return 0.0
+    beta2 = 1.0 - (m_top / m) ** 2
+    if beta2 <= 0.0:
+        return 0.0
+    beta = float(np.sqrt(beta2))
+    r = (m_top * m_top) / (4.0 * m * m)
+    w = beta * (1.0 + 2.0 * r)
+    return float(min(1.0, max(0.0, w)))
 
 def _thermal_v_from_x(x):
     """
@@ -234,10 +257,70 @@ def fastXS(model, x, m, alpha=None):
         Effective thermally averaged BSF cross section [GeV^(-2)]
     """
 
+    # Aliases / special model handling
+    # - QED-S: use dQED-S tables but default-rescale to alpha_em if alpha is None
+    # - QED-F: weighted average between exclTop and inclTop tables (see comments below)
+    if model == "QED-S":
+        model = "dQED-S"
+        if isinstance(alpha, str):
+            alpha = None
+        if alpha is None:
+            alpha = ALPHA_EM_DEFAULT
+
+    if model == "QED-F":
+        # QED-F is an alias: interpolate between exclTop / inclTop tables using a
+        # phase-space weight for opening the t tbar channel. Top affects only the decay
+        # rate in this setup, so a phase-space-weighted mixing is a good approximation.
+        if ("QED-F", "alias") not in _warned:
+            _warned.add(("QED-F", "alias"))
+            warnings.warn(
+                "Info: QED-F uses a phase-space-weighted interpolation between "
+                "QED-FexclTop and QED-FinclTop. For full control, use those models explicitly.",
+                RuntimeWarning
+            )
+
+        if isinstance(alpha, str):
+            alpha = None
+
+        # Determine effective alpha (default: alpha_em)
+        if alpha is None:
+            alpha_eff = ALPHA_EM_DEFAULT
+        elif callable(alpha):
+            q = _potential_scale(m, x)
+            alpha_eff = float(alpha(q))
+        else:
+            alpha_eff = float(alpha)
+
+        # Evaluate both tables at the same alpha_eff
+        for needed in ("QED-FexclTop", "QED-FinclTop"):
+            if needed not in _registry:
+                raise ValueError(f"Required model '{needed}' not found (missing CSV table).")
+
+        entry_excl = _registry["QED-FexclTop"].get(DEFAULT_SCHEME)
+        entry_incl = _registry["QED-FinclTop"].get(DEFAULT_SCHEME)
+        if entry_excl is None or entry_incl is None:
+            raise ValueError("Missing default scheme entries for QED-FexclTop / QED-FinclTop.")
+
+        if entry_excl["mode"] == "2D" or entry_incl["mode"] == "2D":
+            raise ValueError("QED-FexclTop / QED-FinclTop are expected to be rescaled (single-mass) tables.")
+
+        xs_excl = float(entry_excl["xs"](x, m, alpha_eff))
+        xs_incl = float(entry_incl["xs"](x, m, alpha_eff))
+
+        w = _top_phase_space_weight(m)
+        return float((1.0 - w) * xs_excl + w * xs_incl)
+
+    # Default alpha for explicit QED-F variants (exclTop / inclTop): alpha_em unless user overrides
+    if model in ("QED-FexclTop", "QED-FinclTop"):
+        if isinstance(alpha, str):
+            alpha = None
+        if alpha is None:
+            alpha = ALPHA_EM_DEFAULT
+
     if model not in _registry:
         raise ValueError(f"Unknown model '{model}'")
 
-    # scheme via alpha-string hack
+    # scheme via alpha-string hack (only relevant for QCD-* grids)
     scheme = DEFAULT_SCHEME
     if isinstance(alpha, str):
         scheme = alpha if alpha in ("cutoff", "plateau") else DEFAULT_SCHEME
