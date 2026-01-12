@@ -43,7 +43,6 @@ def _potential_scale(m, x):
     return m * np.sqrt(C_POT_SCALE / x)
 
 
-
 def _top_phase_space_weight(m, m_top=M_TOP):
     """
     Phase-space weight for opening the t tbar channel in QED-F.
@@ -58,8 +57,7 @@ def _top_phase_space_weight(m, m_top=M_TOP):
     if beta2 <= 0.0:
         return 0.0
     beta = float(np.sqrt(beta2))
-    r = (m_top * m_top) / (4.0 * m * m)
-    w = beta * (1.0 + 2.0 * r)
+    w = beta * (1.0 + 0.5 * (m_top / m)**2)
     return float(min(1.0, max(0.0, w)))
 
 def _thermal_v_from_x(x):

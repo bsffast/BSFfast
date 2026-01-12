@@ -66,7 +66,7 @@ def main():
     # 5) SM QED model (default coupling alpha=1/128.9)
     # ------------------------------------------------------------
     
-    header("6) QED-S (plateau alpha_em)")
+    header("6) QED-S (default alpha_em)")
     xs_qeds = fastXS("QED-S", x, m)
     print(f"<sigma v> = {xs_qeds:.3e} GeV^(-2)\n")
     
